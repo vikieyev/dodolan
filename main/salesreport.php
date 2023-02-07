@@ -147,10 +147,9 @@ $finalcode='RS-'.createRandomPassword();
 <button  style="width: 123px; height:35px;margin-top:-8px;margin-left:8px;" class="btn btn-success btn-large"><a href="javascript:Clickheretoprint()"> Print</button></a>
 </strong></center>
 
-
-
-
 </form>
+
+
 <div class="content" id="content">
 <div style="font-weight:bold; text-align:center;font-size:14px;margin-bottom: 15px;">
 Sales Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_GET['d2'] ?>
@@ -246,7 +245,44 @@ Sales Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_GET['
 				</th>
 		</tr>
 	</thead>
+
+	</table>
+<div style="font-weight:bold; text-align:center;font-size:14px;margin-bottom: 15px;">
+	Barang Terlaris
+</div>
 </table>
+<table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
+	<thead>
+		<tr>
+			<th width="13%"> Nama Barang </th>
+			<th width="13%"> Terjual </th>
+		</tr>
+	</thead>
+	<tbody>
+		
+			<?php
+				include('../connect.php');
+				$d1=$_GET['d1'];
+				$d2=$_GET['d2'];
+				$result = $db->prepare("SELECT a.invoice_number,a.date ,b.product_code as nama_barang,sum(b.qty) as terjual from sales a join sales_order b on a.invoice_number = b.invoice where a.nama_toko = :nama_toko and a.date between :d1 and :d2 group by b.product_code order by terjual desc");
+				$result->bindParam(':d1', $d1);
+				$result->bindParam(':d2', $d2);
+				$result->bindParam(':nama_toko', $_SESSION['SESS_FIRST_NAME']);
+				$result->execute();
+				for($i=0; $row = $result->fetch(); $i++){
+			?>
+			<tr class="record">
+			<td><?php echo $row['nama_barang']; ?></td>
+			<td><?php echo $row['terjual']; ?></td>
+			
+			</tr>
+			<?php
+				}
+			?>
+		
+	</tbody>
+</table>
+
 </div>
 <div class="clearfix"></div>
 </div>
