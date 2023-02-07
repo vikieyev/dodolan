@@ -142,10 +142,16 @@ $finalcode='RS-'.createRandomPassword();
 --->
 
 <form action="salesreport.php" method="get">
-<center><strong>From : <input type="text" style="width: 223px; padding:14px;" name="d1" class="tcal" value="<?php echo date("m/d/Y",strtotime(' -1 day')); ?>" /> To: <input type="text" style="width: 223px; padding:14px;" name="d2" class="tcal" value="<?php echo date("m/d/Y",strtotime(' +1 day')); ?>" />
- <button class="btn btn-info" style="width: 123px; height:35px; margin-top:-8px;margin-left:8px;" type="submit"><i class="icon icon-search icon-large"></i> Search</button>
-<button  style="width: 123px; height:35px;margin-top:-8px;margin-left:8px;" class="btn btn-success btn-large"><a href="javascript:Clickheretoprint()"> Print</button></a>
-</strong></center>
+<center>
+	<strong>
+		From : <input type="text" style="width: 223px; padding:14px;" name="d1" class="tcal" value="<?php echo date("m/d/Y",strtotime(' -1 day')); ?>" /> To: <input type="text" style="width: 223px; padding:14px;" name="d2" class="tcal" value="<?php echo date("m/d/Y",strtotime(' +1 day')); ?>" />
+	</strong>
+ <button class="btn btn-info" style="width: 123px; height:35px; margin-top:-8px;margin-left:8px;" type="submit">
+ 	<i class="icon icon-search icon-large"></i> Search
+ </button>
+<a><button  style="width: 123px; height:35px;margin-top:-8px;margin-left:8px;" class="btn btn-success btn-large"><a href="javascript:Clickheretoprint()"> <i class="icon-print"> </i> Print
+</button></a>
+</center>
 
 </form>
 
