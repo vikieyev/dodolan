@@ -154,11 +154,7 @@ $finalcode='RS-'.createRandomPassword();
 
 </form>
 
-<div align="center"> 
-	<a><button  style="width: 123px; height:35px;margin-top:-8px;margin-left:8px;" class="btn btn-success btn-large"><a href="javascript:Clickheretoprint()"> <i class="icon-print"> </i>Print
-</a></button></a>
 
-</div>
 
 <div class="content" id="content">
 <div style="font-weight:bold; text-align:center;font-size:14px;margin-bottom: 15px;">
@@ -300,6 +296,12 @@ Sales Report from&nbsp;<?php echo date("d-M-Y", strtotime($_GET['d1'] ));?>&nbsp
 </div>
 
 </body>
+</br>
+<div align="right"> 
+	<a><button  style="width: 123px; height:35px;margin-top:-8px;margin-left:8px;" class="btn btn-success btn-large"><a href="javascript:Clickheretoprint()"> <i class="icon-print"> </i>Print
+</a></button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+
 <script src="js/jquery.js"></script>
   <script type="text/javascript">
 $(function() {
