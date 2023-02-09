@@ -6,7 +6,7 @@
 	} else {
 	
 		if(isset($_POST['queryString'])) {
-			$queryString = $db->quote($_POST['queryString']);
+			$queryString = $_POST['queryString'];
 			
 			if(strlen($queryString) >0) {
 
@@ -16,8 +16,8 @@
 				$q->execute();
 				if($q) {
 				echo '<ul>';
-					while ($result = $q->fetch()) {
-	         			echo '<li onClick="fill(\''.addslashes($result->customer_name).'\');">'.$result->customer_name.'</li>';
+					while ($row = $q->fetch()) {
+	         			echo '<li onClick="fill(\''.addslashes($row[0]).'\');">'.$row[0].'</li>';
 	         		}
 				echo '</ul>';
 					
