@@ -15,6 +15,111 @@ POS
     
       .sidebar-nav {
         padding: 9px 0;
+
+        /* Fullscreen Button 
+		------------------------------*/
+
+		#fullscreen-button {
+			position: absolute;
+			top:  15px;
+			right:  15px;
+			background: rgba(0,0,0,0.05);
+			border:  0;
+			width:  40px;
+			height:  40px;
+			border-radius: 50%;
+			box-sizing: border-box;
+			transition:  transform .3s;
+			font-size: 0;
+			opacity: 1;
+			pointer-events: auto;
+			cursor:  pointer;
+		}
+
+		#fullscreen-button:hover {
+			transform: scale(1.125);
+		}
+
+		#fullscreen-button span {
+			width:  4px;
+			height:  4px;
+			border-top:  2.5px solid #111; /* color */
+			border-left:  2.5px solid #111; /* color */
+			position: absolute;
+			outline: 1px solid transparent;
+			-webkit-backface-visibility: hidden;
+			transform: translateZ(0);
+			will-change: transform;
+			-webkit-perspective: 1000;
+			transition:  .3s;
+			transition-delay: .75s;
+		}
+
+		#fullscreen-button span:nth-child(1) {
+			top: 11px;
+			left: 11px;
+		}
+
+		#fullscreen-button span:nth-child(2) {
+			top: 11px;
+			left: 22px;
+			transform: rotate(90deg);
+		}
+
+		#fullscreen-button span:nth-child(3) {
+			top: 22px;
+			left: 11px;
+			transform: rotate(-90deg);
+		}
+
+		#fullscreen-button span:nth-child(4) {
+			top: 22px;
+			left: 22px;
+			transform: rotate(-180deg);
+		}
+
+
+		/* Fullscreen True
+		------------------------------*/
+
+		[fullscreen] #fullscreen-button span:nth-child(1) {
+			top: 22px;
+			left: 22px;
+		}
+
+		[fullscreen] #fullscreen-button span:nth-child(2) {
+			top: 22px;
+			left: 11px;
+		}
+
+		[fullscreen] #fullscreen-button span:nth-child(3) {
+			top: 11px;
+			left: 22px;
+		}
+
+		[fullscreen] #fullscreen-button span:nth-child(4) {
+			top: 11px;
+			left: 11px;
+		}
+
+		/* Dark Style
+		------------------------------*/
+
+		[light-mode=dark] {
+			background: #111;
+			color:  #fff;
+		}
+
+		[light-mode=dark] #fullscreen-button {
+			background: rgba(255,255,255,.05);
+		}
+
+
+		[light-mode=dark] #fullscreen-button span {
+			border-top:  2.5px solid #fff;
+			border-left:  2.5px solid #fff;
+		}
+
       }
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -88,7 +193,10 @@ window.onload=startclock;
 // End -->
 </SCRIPT>	
 </head>
-<body>
+
+
+<body light-mode="dark">
+
 <?php include('navfixed.php');?>
 	<?php
 $position=$_SESSION['SESS_LAST_NAME'];
@@ -106,7 +214,7 @@ if($position=='admin') {
 	<div class="span2">
           <div class="well sidebar-nav">
                      <ul class="nav nav-list">
-              <li class="active"><a href="#"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
+              <li class="active"><a  href="#"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
 			<li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Penjualan</a>  </li>             
 			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Barang/Jasa</a>                                     </li>
 			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Pelanggan</a>                                    </li>
@@ -129,7 +237,7 @@ if($position=='admin') {
 			<i class="icon-dashboard"></i> Dashboard
 			</div>
 			<ul class="breadcrumb">
-			<li class="active">Dashboard</li>
+			<li class="active"><a onclick="" href="#">Fullscreen F11</a></li>
 			</ul>
 			<font style=" font:bold 44px 'Aleo'; text-shadow:1px 1px 25px #000; color:#fff;"><center><?php echo $_SESSION['SESS_FIRST_NAME'] ?> </center></font>
 <div id="mainmain">
@@ -146,10 +254,160 @@ if($position=='admin') {
 }
 ?>
 <div class="clearfix"></div>
+
 </div>
 </div>
 </div>
 </div>
+
+
+
 </body>
+
 <?php include('footer.php'); ?>
+
+<script language="javascript" type="text/javascript">
+
+	// Fullscreen button
+	console.log("fullscreen button");
+	//window.onload=create_fullscreen_button;
+    if (document.fullscreenEnabled || document.webkitFullscreenEnabled || 
+	  	document.msFullscreenEnabled ) {
+		create_fullscreen_button();
+	}
+
+    function create_fullscreen_button() {
+
+        let fullscreen_button = document.createElement("button");
+        fullscreen_button.setAttribute('id','fullscreen-button');
+        fullscreen_button.addEventListener("click", toggle_fullscreen);
+
+        fullscreen_button.innerHTML  = `
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        `;
+
+        document.body.appendChild(fullscreen_button);
+
+    }
+
+
+    function toggle_fullscreen() {
+
+		if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement) { 
+
+			if (document.documentElement.requestFullscreen) {
+			    document.documentElement.requestFullscreen()
+			} else if (document.documentElement.mozRequestFullScreen) {
+			    document.documentElement.mozRequestFullScreen()
+			} else if (document.documentElement.webkitRequestFullscreen) {
+			    document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT)
+			}
+
+		document.body.setAttribute("fullscreen","") 
+
+		} else {
+
+			if (document.cancelFullScreen) {
+			    document.cancelFullScreen()
+			} else if (document.mozCancelFullScreen) {
+			    document.mozCancelFullScreen()
+			} else if (document.webkitCancelFullScreen) {
+			    document.webkitCancelFullScreen()
+			}
+
+			document.body.removeAttribute("fullscreen") 
+
+		}
+		
+	}
+
+
+	function check_fullscreen() {
+
+        // Because users can exit & enter fullscreen by other methods
+
+        if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen) { 
+            document.body.setAttribute("fullscreen","") 
+        }
+
+        else  { 
+            document.body.removeAttribute("fullscreen") 
+        }
+    }
+
+    setInterval(function(){ check_fullscreen();}, 1000); 
+
+
+
+</script>
+
+<script>
+/* Get the documentElement (<html>) to display the page in fullscreen */
+var elem = document.documentElement;
+var wscript = new ActiveXObject("WScript.Shell");
+/* View in fullscreen */
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+    if (wscript !== null) {
+             wscript.SendKeys("{F11}");
+         }
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+    if (wscript !== null) {
+             wscript.SendKeys("{F11}");
+         }
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+    if (wscript !== null) {
+             wscript.SendKeys("{F11}");
+         }
+  }
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+
+function mKeyF11(){
+    var e = new Event('keypress');
+    e.which = 122; // Character F11 equivalent.
+    e.altKey=false;
+    e.ctrlKey=false;
+    e.shiftKey=false;
+    e.metaKey=false;
+    e.bubbles=true;
+    document.dispatchEvent(e);
+}
+
+// function requestFullScreen() {
+// 	var elemment = document.documentElement; // Make the body go full screen.
+//     // Supports most browsers and their versions.
+//     var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+
+//     if (requestMethod) { // Native full screen.
+//         requestMethod.call(element);
+//     } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+//         var wscript = new ActiveXObject("WScript.Shell");
+//         if (wscript !== null) {
+//             wscript.SendKeys("{F11}");
+//         }
+//     }
+// }
+
+
+//requestFullScreen(element);
+</script>
+
+
 </html>

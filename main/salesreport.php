@@ -149,16 +149,20 @@ $finalcode='RS-'.createRandomPassword();
  <button class="btn btn-info" style="width: 123px; height:35px; margin-top:-8px;margin-left:8px;" type="submit">
  	<i class="icon icon-search icon-large"></i> Search
  </button>
-<a><button  style="width: 123px; height:35px;margin-top:-8px;margin-left:8px;" class="btn btn-success btn-large"><a href="javascript:Clickheretoprint()"> <i class="icon-print"> </i> Print
-</button></a>
+ 
 </center>
 
 </form>
 
+<div align="center"> 
+	<a><button  style="width: 123px; height:35px;margin-top:-8px;margin-left:8px;" class="btn btn-success btn-large"><a href="javascript:Clickheretoprint()"> <i class="icon-print"> </i>Print
+</a></button></a>
+
+</div>
 
 <div class="content" id="content">
 <div style="font-weight:bold; text-align:center;font-size:14px;margin-bottom: 15px;">
-Sales Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_GET['d2'] ?>
+Sales Report from&nbsp;<?php echo date("d-M-Y", strtotime($_GET['d1'] ));?>&nbsp;to&nbsp;<?php echo date("d-M-Y", strtotime($_GET['d2'] ));?>
 </div>
 <table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
 	<thead>
