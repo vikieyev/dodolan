@@ -43,6 +43,22 @@ function Clickheretoprint()
 }
 </script>
 
+<script language="javascript">
+function Clickheretoprint_product_terlaris()
+{ 
+  var disp_setting="toolbar=yes,location=no,directories=yes,menubar=yes,"; 
+      disp_setting+="scrollbars=yes,width=700, height=400, left=100, top=25"; 
+  var content_vlue = document.getElementById("content_product_terlaris").innerHTML; 
+  
+  var docprint=window.open("","",disp_setting); 
+   docprint.document.open(); 
+   docprint.document.write('</head><body onLoad="self.print()" style="width: 700px; font-size:11px; font-family:arial; font-weight:normal;">');          
+   docprint.document.write(content_vlue); 
+   docprint.document.close(); 
+   docprint.focus(); 
+}
+</script>
+
 
  <script language="javascript" type="text/javascript">
 /* Visit http://www.yaldex.com/ for full source code
@@ -253,14 +269,21 @@ Sales Report from&nbsp;<?php echo date("d-M-Y", strtotime($_GET['d1'] ));?>&nbsp
 	</thead>
 
 	</table>
+	</br>
+</div><!--  div content lap -->
+	<div align="right"> 
+	<a><button  style="width: 123px; height:35px;margin-top:-8px;margin-left:8px;" class="btn btn-success btn-large"><a href="javascript:Clickheretoprint()"> <i class="icon-print"> </i>Print
+</a></button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div class="content" id="content_product_terlaris">
 <div style="font-weight:bold; text-align:center;font-size:14px;margin-bottom: 15px;">
-	Barang Terlaris
+	Product Terlaris &nbsp;<?php echo date("d-M-Y", strtotime($_GET['d1'] ));?>&nbsp;to&nbsp;<?php echo date("d-M-Y", strtotime($_GET['d2'] ));?>
 </div>
 </table>
 <table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
-			<th width="13%"> Nama Barang </th>
+			<th width="13%"> Nama Product </th>
 			<th width="13%"> Terjual </th>
 		</tr>
 	</thead>
@@ -288,19 +311,22 @@ Sales Report from&nbsp;<?php echo date("d-M-Y", strtotime($_GET['d1'] ));?>&nbsp
 		
 	</tbody>
 </table>
-
+</div><!--  div content terlaris -->
 </div>
 <div class="clearfix"></div>
 </div>
 </div>
 </div>
 
-</body>
+
 </br>
 <div align="right"> 
-	<a><button  style="width: 123px; height:35px;margin-top:-8px;margin-left:8px;" class="btn btn-success btn-large"><a href="javascript:Clickheretoprint()"> <i class="icon-print"> </i>Print
+	<a><button  style="width: 123px; height:35px;margin-top:-8px;margin-left:8px;" class="btn btn-success btn-large"><a href="javascript:Clickheretoprint_product_terlaris()"> <i class="icon-print"> </i>Print
 </a></button></a>&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
+</body>
+
+
 
 <script src="js/jquery.js"></script>
   <script type="text/javascript">

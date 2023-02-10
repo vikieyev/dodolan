@@ -15,12 +15,13 @@ $g = $_POST['o_price'];
 $h = $_POST['profit'];
 $i = $_POST['date_arrival'];
 $j = $_POST['sold'];
+$kode_barcode = $_POST['kode_barcode'];
 // query
 $sql = "UPDATE products 
-        SET product_code=?, gen_name=?, product_name=?, expiry_date=?, price=?, supplier=?, qty=?, o_price=?, profit=?, date_arrival=?, qty_sold=?
+        SET kode_barcode=?, product_code=?, gen_name=?, product_name=?, expiry_date=?, price=?, supplier=?, qty=?, o_price=?, profit=?, date_arrival=?, qty_sold=?
 		WHERE product_id=?";
 $q = $db->prepare($sql);
-$q->execute(array($a,$z,$b,$c,$d,$e,$f,$g,$h,$i,$j,$id));
+$q->execute(array($kode_barcode, $a,$z,$b,$c,$d,$e,$f,$g,$h,$i,$j,$id));
 header("location: products.php");
 
 ?>

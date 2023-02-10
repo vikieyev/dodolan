@@ -3,6 +3,7 @@
 <center><h4><i class="icon-plus-sign icon-large"></i> Add Product</h4></center>
 <hr>
 <div id="ac">
+<span>Barcode : </span><input type="text" style="width:265px; height:30px;" name="kode_barcode" ><br>
 <span>Brand Name : </span><input type="text" style="width:265px; height:30px;" name="code" ><br>
 <span>Generic Name : </span><input type="text" style="width:265px; height:30px;" name="gen" Required/><br>
 <span>Category / Description : </span><textarea style="width:265px; height:50px;" name="name"> </textarea><br>

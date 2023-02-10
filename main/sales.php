@@ -156,11 +156,24 @@ if($position=='admin') {
 <div style="margin-top: -19px; margin-bottom: 21px;">
 <a  href="index.php"><button class="btn btn-default btn-large" style="float: none;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
 </div>
+
+<form action="incoming.php" method="post" >
+											
+<input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
+<input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
+<input  placeholder="Barcode Scanner" style="width:250px;" type="text" name="product" value="" autofocus/>
+<!-- <input type="hidden" name="product" value="" /> -->
+<input type="number" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" / required>
+<input type="hidden" name="discount" value="" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" />
+<input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />
+<Button type="submit" class="btn btn-info" style="width: 123px; height:35px; margin-top:-5px;" /><i class="icon-plus-sign icon-large"></i> Add</button>
+</form>
 													
 <form action="incoming.php" method="post" >
 											
 <input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
 <input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
+<!-- <input style="width:50px;" type="text" name="kode_barcode" value="" /> -->
 <select name="product" style="width:650px; "class="chzn-select" required>
 <option></option>
 	<?php
@@ -170,7 +183,7 @@ if($position=='admin') {
 		$result->execute();
 		for($i=0; $row = $result->fetch(); $i++){
 	?>
-		<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - <?php echo $row['gen_name']; ?> - <?php echo $row['product_name']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
+		<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - <?php echo $row['kode_barcode']; ?> - <?php echo $row['gen_name']; ?> - <?php echo $row['product_name']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
 	<?php
 				}
 			?>
@@ -228,7 +241,7 @@ if($position=='admin') {
 			echo formatMoney($profit, true);
 			?>
 			</td>
-			<td width="90"><a href="delete.php?id=<?php echo $row['transaction_id']; ?>&invoice=<?php echo $_GET['invoice']; ?>&dle=<?php echo $_GET['id']; ?>&qty=<?php echo $row['qty'];?>&code=<?php echo $row['product'];?>"><button class="btn btn-mini btn-warning"><i class="icon icon-remove"></i> Cancel </button></a></td>
+			<td width="90"><a href="delete.php?id=<?php echo $row['transaction_id']; ?>&invoice=<?php echo $_GET['invoice']; ?>&dle=<?php echo $_GET['id']; ?>&qty=<?php echo $row['qty'];?>&code=<?php echo $row['product'];?>&kode_barcode=<?php echo $row['product'];?>"><button class="btn btn-mini btn-warning"><i class="icon icon-remove"></i> Cancel </button></a></td>
 			</tr>
 			<?php
 				}
