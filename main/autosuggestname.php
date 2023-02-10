@@ -1,5 +1,6 @@
 <?php
    include('../connect.php');
+   require_once('auth.php');
 	if(!$db) {
 	
 		echo 'Could not connect to the database.';
@@ -10,9 +11,10 @@
 			
 			if(strlen($queryString) >0) {
 
-				$query = "SELECT customer_name FROM customer WHERE customer_name LIKE CONCAT('%', :queryString, '%') LIMIT 10";
+				$query = "SELECT customer_name FROM customer WHERE nama_toko=:nama_toko and customer_name LIKE CONCAT('%', :queryString, '%') LIMIT 10";
 				$q = $db->prepare($query);
-				$q->bindParam(':queryString', $queryString); //tambahan nama toko//
+				$q->bindParam(':queryString', $queryString); 
+				$q->bindParam(':nama_toko', $_SESSION['SESS_FIRST_NAME']); //tambahan nama toko//
 				$q->execute();
 				if($q) {
 				echo '<ul>';
