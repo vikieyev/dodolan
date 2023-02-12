@@ -163,7 +163,7 @@ if($position=='admin') {
 <input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
 <input  placeholder="Barcode Scanner" style="width:250px;" type="text" name="product" value="" autofocus/>
 <!-- <input type="hidden" name="product" value="" /> -->
-<input type="number" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" / required>
+<input type="hidden" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" / required>
 <input type="hidden" name="discount" value="" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" />
 <input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />
 <Button type="submit" class="btn btn-info" style="width: 123px; height:35px; margin-top:-5px;" /><i class="icon-plus-sign icon-large"></i> Add</button>
