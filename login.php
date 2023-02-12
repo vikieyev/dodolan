@@ -9,10 +9,11 @@
 	$errflag = false;
 	
 	//Connect to mysql server
-	$conn = mysqli_connect('localhost','root',"",'sales');
-	if(!$conn) {
-		die('Failed to connect to server: ' . mysqli_error());
-	}
+	include('connect.php');
+	// $conn = mysqli_connect('localhost','root',"",'sales');
+	// if(!$conn) {
+	// 	die('Failed to connect to server: ' . mysqli_error());
+	// }
 	
 	
 	//Function to sanitize values received from the form. Prevents SQL injection
@@ -47,19 +48,25 @@
 	}
 	
 	//Create query
-	$qry="SELECT * FROM user WHERE username='$login' AND password='$password'";
-	$result=mysqli_query($conn,$qry);
+	$result = $db->prepare("SELECT * FROM user where username = :username and password=:password ");
+	$result->bindParam(':username', $login);
+	$result->bindParam(':password', $password);
+	$result->execute();
+	// $qry="SELECT * FROM user WHERE username='$login' AND password='$password'";
+	// $result=mysqli_query($conn,$qry);
 	
 	//Check whether the query was successful or not
 	if($result) {
-		if(mysqli_num_rows($result) > 0) {
+		///if($result->fetchColumn() > 0) {
 			//Login Successful
 			session_regenerate_id();
-			$member = mysqli_fetch_assoc($result);
-			$_SESSION['SESS_MEMBER_ID'] = $member['id'];
-			$_SESSION['SESS_FIRST_NAME'] = $member['name'];
-			$_SESSION['SESS_LAST_NAME'] = $member['position'];
-			//$_SESSION['SESS_PRO_PIC'] = $member['profImage'];
+			//$member = mysqli_fetch_assoc($result);
+			for($i=0; $member = $result->fetch(); $i++){
+				$_SESSION['SESS_MEMBER_ID'] = $member['id'];
+				$_SESSION['SESS_FIRST_NAME'] = $member['name'];
+				$_SESSION['SESS_LAST_NAME'] = $member['position'];
+				//$_SESSION['SESS_PRO_PIC'] = $member['profImage'];
+			}
 			session_write_close();
 			header("location: main/index.php");
 			exit();
@@ -68,7 +75,7 @@
 			header("location: index.php");
 			exit();
 		}
-	}else {
-		die("Query failed");
-	}
+	// }else {
+	// 	die("Query failed");
+	// }
 ?>

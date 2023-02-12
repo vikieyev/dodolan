@@ -9,6 +9,7 @@ $c = $_POST['qty'];
 $w = $_POST['pt'];
 $date = $_POST['date'];
 $discount = $_POST['discount'];
+$discount = 0;
 $result = $db->prepare("SELECT * FROM products WHERE product_id= :userid or kode_barcode= :kode_barcode");
 $result->bindParam(':userid', $b);
 $result->bindParam(':kode_barcode', $kode_barcode);
