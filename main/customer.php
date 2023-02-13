@@ -96,6 +96,20 @@ function createRandomPassword() {
 	return $pass;
 }
 $finalcode='RS-'.createRandomPassword();
+function formatMoney($number, $fractional=false) {
+	if ($fractional) {
+		$number = sprintf('%.2f', $number);
+	}
+	while (true) {
+		$replaced = preg_replace('/(-?\d+)(\d\d\d)/', '$1,$2', $number);
+		if ($replaced != $number) {
+			$number = $replaced;
+		} else {
+			break;
+		}
+	}
+	return $number;
+}
 ?>
 <body>
 <?php include('navfixed.php');?>
@@ -156,7 +170,7 @@ $finalcode='RS-'.createRandomPassword();
 			<th width="10%"> Address </th>
 			<th width="10%"> Contact Number</th>
 			<th width="23%"> Product Name</th>
-			<th width="9%"> Total </th>
+			<th width="9%"> Total Pembelian</th>
 			<th width="17%"> Note </th>
 			<th width="9%"> Due Date </th>
 			<th width="14%"> Action </th>
@@ -166,17 +180,31 @@ $finalcode='RS-'.createRandomPassword();
 		
 			<?php
 				include('../connect.php');
+				
+
 				$result = $db->prepare("SELECT * FROM customer where nama_toko = :nama_toko ORDER BY customer_id DESC");
 				$result->bindParam(':nama_toko', $_SESSION['SESS_FIRST_NAME']);
 				$result->execute();
-				for($i=0; $row = $result->fetch(); $i++){
+				for($i=0; $row = $result->fetch(); $i++){	
+					$total_amont = 0;
+					if($row['customer_name'] !=""){
+						$resultc = $db->prepare("SELECT sum(amount) as total_amount FROM sales where nama_toko = :nama_toko and name = :cname group by name");
+						$resultc->bindParam(':nama_toko', $_SESSION['SESS_FIRST_NAME']);
+						$resultc->bindParam(':cname', $row['customer_name']);
+						$resultc->execute();
+						$rowc = $resultc->fetch();
+						$total_amont = $rowc['total_amount'];
+
+					}
+					
+					
 			?>
 			<tr class="record">
 			<td><?php echo $row['customer_name']; ?></td>
 			<td><?php echo $row['address']; ?></td>
 			<td><?php echo $row['contact']; ?></td>
 			<td><?php echo $row['prod_name']; ?></td>
-			<td>P <?php echo $row['membership_number']; ?>.00</td>
+			<td>Rp.<?php echo  formatMoney($total_amont); ?></td>
 			<td><?php echo $row['note']; ?></td>
 			<td><?php echo $row['expected_date']; ?></td>
 
