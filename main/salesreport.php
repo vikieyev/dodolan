@@ -202,7 +202,7 @@ Sales Report from&nbsp;<?php echo date("d-M-Y", strtotime($_GET['d1'] ));?>&nbsp
 			?>
 			<tr class="record">
 			<td>STI-00<?php echo $row['transaction_id']; ?></td>
-			<td><?php echo $row['date']; ?></td>
+			<td><?php echo date("d-M-Y", strtotime($row['date'] )); ?></td>
 			<td><?php echo $row['name']; ?></td>
 			<td><a href="preview_kecil.php?invoice=<?php echo $row['invoice_number']; ?>"> <?php echo $row['invoice_number']; ?>  </a></td>
 			<td><?php
@@ -293,7 +293,7 @@ Sales Report from&nbsp;<?php echo date("d-M-Y", strtotime($_GET['d1'] ));?>&nbsp
 				include('../connect.php');
 				$d1=$_GET['d1'];
 				$d2=$_GET['d2'];
-				$result = $db->prepare("SELECT b.product_code as nama_barang,sum(b.qty) as terjual from sales a join sales_order b on a.invoice_number = b.invoice where a.nama_toko = :nama_toko and a.date between :d1 and :d2 group by b.product_code order by terjual desc");
+				$result = $db->prepare("SELECT b.gen_name as nama_barang,sum(b.qty) as terjual from sales a join sales_order b on a.invoice_number = b.invoice where a.nama_toko = :nama_toko and a.date between :d1 and :d2 group by b.product_code order by terjual desc");
 				$result->bindParam(':d1', $d1);
 				$result->bindParam(':d2', $d2);
 				$result->bindParam(':nama_toko', $_SESSION['SESS_FIRST_NAME']);

@@ -296,7 +296,7 @@ window.onload=startclock;
               </tr>
               <tr class="tabletitle">
                 <td>Date :</td>
-                <td><?php echo $date ?></td>
+                <td><?php echo date("d-M-Y", strtotime($date )) ?></td>
               </tr>
             </table>
 
@@ -323,7 +323,7 @@ window.onload=startclock;
         <td><p class="itemtext">
         <?php
         $ppp=$row['price'];
-        echo $ppp;
+        echo formatMoney($ppp);
         ?>
         </p>
         </td>
@@ -331,7 +331,7 @@ window.onload=startclock;
         <td><p class="itemtext">
         <?php
         $dfdf=$row['amount'];
-        echo $dfdf;
+        echo formatMoney($dfdf);
         ?>
         </p>
         </td>
@@ -353,7 +353,7 @@ window.onload=startclock;
                     $resultas->execute();
                     for($i=0; $rowas = $resultas->fetch(); $i++){
                     $fgfg=$rowas['sum(amount)'];
-                    echo $fgfg;
+                    echo formatMoney($fgfg);
                     }
                     ?>
                                 </p></td>
@@ -364,7 +364,7 @@ window.onload=startclock;
                                 <td class="tableitem"><p class="itemtext">Cash:</p></td>
                                 <td class="tableitem"><p class="itemtext">
                                   <?php
-                  echo $cash;
+                  echo formatMoney($cash);
                   ?>
                                 </p></td>
                             </tr>
@@ -401,7 +401,7 @@ window.onload=startclock;
                     echo $cash;
                     }
                     if($pt=='cash'){
-                    echo $amount;
+                    echo formatMoney($amount);
                     }
                   ?>
                                 </p></td>
