@@ -119,31 +119,13 @@ if($position=='cashier') {
 }
 if($position=='admin') {
 ?>
-	
+	<?php include('sidebar_new.php');?>  
 <div class="container-fluid">
       <div class="row-fluid">
 	<div class="span2">
-          <div class="well sidebar-nav">
-              <ul class="nav nav-list">
-              <li ><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
-			<li class="active"><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Penjualan</a>  </li>             
-			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Barang/Jasa</a>                                     </li>
-			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Pelanggan</a>                                    </li>
-			<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a>                                    </li>
-			<li><a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i> Lap. Penjualan</a>                </li>
-			<br><br><br><br><br><br>
-			<li>
-			 <div class="hero-unit-clock">
-		
-			<form name="clock">
-			<font color="white">Time: <br></font>&nbsp;<input style="width:150px;" type="text" class="trans" name="face" value="" disabled>
-			</form>
-			  </div>
-			</li>
-				
-				</ul>    
+          
 <?php } ?>				
-          </div><!--/.well -->
+          
         </div><!--/span-->
 	<div class="span10">
 		<div class="contentheader">
@@ -159,40 +141,41 @@ if($position=='admin') {
 
 <form action="incoming.php" method="post" >
 											
-<input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
-<input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
-<input  placeholder="Barcode Scanner" style="width:250px;" type="text" name="product" value="" autofocus/>
-<!-- <input type="hidden" name="product" value="" /> -->
-<input type="hidden" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" / required>
-<input type="hidden" name="discount" value="" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" />
-<input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />
-<Button type="submit" class="btn btn-info" style="width: 123px; height:35px; margin-top:-5px;" /><i class="icon-plus-sign icon-large"></i> Add</button>
+	<input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
+	<input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
+	<input  placeholder="Barcode Scanner" style="width:250px;" type="text" name="product" value="" autofocus/>
+	<!-- <input type="hidden" name="product" value="" /> -->
+	<input type="hidden" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" / required>
+	<input type="hidden" name="discount" value="" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" />
+	<input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />
+	<Button type="submit" class="btn btn-info" style="width: 123px; height:35px; margin-top:-5px;" /><i class="icon-plus-sign icon-large"></i> Add</button>
 </form>
 													
 <form action="incoming.php" method="post" >
 											
-<input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
-<input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
-<!-- <input style="width:50px;" type="text" name="kode_barcode" value="" /> -->
-<select name="product" style="width:650px; "class="chzn-select" required>
-<option></option>
-	<?php
-	include('../connect.php');
-	$result = $db->prepare("SELECT * FROM products where nama_toko = :nama_toko ");
-		$result->bindParam(':nama_toko', $_SESSION['SESS_FIRST_NAME']);
-		$result->execute();
-		for($i=0; $row = $result->fetch(); $i++){
-	?>
-		<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - <?php echo $row['kode_barcode']; ?> - <?php echo $row['gen_name']; ?> - <?php echo $row['product_name']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
-	<?php
-				}
-			?>
-</select>
-<input type="number" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" / required>
-<input type="hidden" name="discount" value="" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" />
-<input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />
-<Button type="submit" class="btn btn-info" style="width: 123px; height:35px; margin-top:-5px;" /><i class="icon-plus-sign icon-large"></i> Add</button>
+	<input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
+	<input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
+	<!-- <input style="width:50px;" type="text" name="kode_barcode" value="" /> -->
+	<select name="product" style="width:650px; "class="chzn-select" required>
+	<option></option>
+		<?php
+		include('../connect.php');
+		$result = $db->prepare("SELECT * FROM products where nama_toko = :nama_toko ");
+			$result->bindParam(':nama_toko', $_SESSION['SESS_FIRST_NAME']);
+			$result->execute();
+			for($i=0; $row = $result->fetch(); $i++){
+		?>
+			<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - <?php echo $row['kode_barcode']; ?> - <?php echo $row['gen_name']; ?> - <?php echo $row['product_name']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
+		<?php
+					}
+				?>
+	</select>
+	<input type="number" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" / required>
+	<input type="hidden" name="discount" value="" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" />
+	<input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />
+	<Button type="submit" class="btn btn-info" style="width: 123px; height:35px; margin-top:-5px;" /><i class="icon-plus-sign icon-large"></i> Add</button>
 </form>
+
 <table class="table table-bordered" id="resultTable" data-responsive="table">
 	<thead>
 		<tr>

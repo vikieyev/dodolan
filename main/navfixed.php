@@ -12,7 +12,7 @@
               <li><a><i class="icon-user icon-large"></i> Welcome:<strong> <?php echo $_SESSION['SESS_FIRST_NAME'];?></strong></a></li>
 			 <li><a> <i class="icon-calendar icon-large"></i>
 								<?php
-								//date_default_timezone_set("America/Los_Angeles");
+								date_default_timezone_set("Asia/Jakarta");
 								#$Today = date('y:m:d',mktime());
 								$Today = date('y:m:d');
 								$new = date('l, F d, Y', strtotime($Today));

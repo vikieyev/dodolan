@@ -208,10 +208,12 @@ if($position=='cashier') {
 }
 if($position=='admin') {
 ?>
-	
-	<div class="container-fluid">
+	<?php include('sidebar_new.php')?>
+	<div class="container-fluid" >
       <div class="row-fluid">
 	<div class="span2">
+	
+	<!---
           <div class="well sidebar-nav">
                      <ul class="nav nav-list">
               <li class="active"><a  href="#"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
