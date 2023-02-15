@@ -138,7 +138,7 @@ window.onload=startclock;
         </div><!--/span-->
 	<div class="span10">
 	<div class="contentheader">
-			<i class="icon-table"></i> Products
+			<i class="icon-table"></i> Barang / Jasa
 			</div>
 			<ul class="breadcrumb">
 			<li><a href="index.php">Dashboard</a></li> /
@@ -165,31 +165,31 @@ window.onload=startclock;
 
 			?>
 				<div style="text-align:center;">
-			Total Number of Products:  <font color="green" style="font:bold 22px 'Aleo';">[<?php echo $rowcount;?>]</font>
+			Total Jumlah Produk:  <font color="green" style="font:bold 22px 'Aleo';">[<?php echo $rowcount;?>]</font>
 			</div>
 			
 			<div style="text-align:center;">
-			<font style="color:rgb(255, 95, 66);; font:bold 22px 'Aleo';">[<?php echo $rowcount123;?>]</font> Products are below QTY of 10 
+			<font style="color:rgb(255, 95, 66);; font:bold 22px 'Aleo';">[<?php echo $rowcount123;?>]</font> Produk Kurang Dari 10 
 			</div>
 </div>
 
 
-<input type="text" style="padding:15px;" name="filter" value="" id="filter" placeholder="Search Product..." autocomplete="off" />
-<a rel="facebox" href="addproduct.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add Product</button></a><br><br>
+<input type="text" style="padding:15px;" name="filter" value="" id="filter" placeholder="Cari Produk..." autocomplete="off" />
+<a rel="facebox" href="addproduct.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i>Tambah Produk</button></a><br><br>
 <table class="hoverTable" id="resultTable" data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
-			<th width="12%"> Brand Name </th>
-			<th width="14%"> Generic Name </th>
-			<th width="13%"> Category / Description </th>
+			<th width="12%"> Merek </th>
+			<th width="14%"> Nama Produk </th>
+			<th width="13%"> Deskripsi </th>
 			<th width="7%"> Supplier </th>
-			<th width="9%"> Date Received </th>
-			<th width="10%"> Expiry Date </th>
-			<th width="6%"> Original Price </th>
-			<th width="6%"> Selling Price </th>
+			<th width="9%"> Tanggal Masuk </th>
+			<th width="10%"> Tanggal Expired </th>
+			<th width="6%"> Harga Kulak </th>
+			<th width="6%"> Harga Jual </th>
 			<th width="6%"> QTY </th>
-			<th width="5%"> Qty Left </th>
-			<th width="8%"> Total </th>
+			<th width="5%"> Sisa Qty </th>
+			<th width="8%"> Total Harga Jual </th>
 			<th width="8%"> Action </th>
 		</tr>
 	</thead>

@@ -121,7 +121,7 @@ function formatMoney($number, $fractional=false) {
         </div><!--/span-->
 	<div class="span10">
 	<div class="contentheader">
-			<i class="icon-group"></i> Customers
+			<i class="icon-group"></i> Pelanggan
 			</div>
 			<ul class="breadcrumb">
 			<li><a href="index.php">Dashboard</a></li> /
@@ -138,22 +138,22 @@ function formatMoney($number, $fractional=false) {
 				$rowcount = $result->rowcount();
 			?>
 			<div style="text-align:center;">
-			Total Number of Customers: <font color="green" style="font:bold 22px 'Aleo';"><?php echo $rowcount;?></font>
+			Total Jumlah Pelanggan: <font color="green" style="font:bold 22px 'Aleo';"><?php echo $rowcount;?></font>
 			</div>
 </div>
-<input type="text" name="filter" style="padding:15px;" id="filter" placeholder="Search Customer..." autocomplete="off" />
-<a rel="facebox" href="addcustomer.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add Customer</button></a><br><br>
+<input type="text" name="filter" style="padding:15px;" id="filter" placeholder="Cari Pelanggan..." autocomplete="off" />
+<a rel="facebox" href="addcustomer.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Tambah Pelanggan</button></a><br><br>
 
 <table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
-			<th width="17%"> Full Name </th>
-			<th width="10%"> Address </th>
-			<th width="10%"> Contact Number</th>
-			<th width="23%"> Product Name</th>
+			<th width="17%"> Nama Lengkap </th>
+			<th width="10%"> Alamat </th>
+			<th width="10%"> Nomor Kontak</th>
+			<th width="23%"> Produk</th>
 			<th width="9%"> Total Pembelian</th>
-			<th width="17%"> Note </th>
-			<th width="9%"> Due Date </th>
+			<th width="17%"> Catatan </th>
+			<th width="9%"> Tanggal Berakhir </th>
 			<th width="14%"> Action </th>
 		</tr>
 	</thead>
@@ -173,8 +173,15 @@ function formatMoney($number, $fractional=false) {
 						$resultc->bindParam(':nama_toko', $_SESSION['SESS_FIRST_NAME']);
 						$resultc->bindParam(':cname', $row['customer_name']);
 						$resultc->execute();
-						$rowc = $resultc->fetch();
-						$total_amont = $rowc['total_amount'];
+						
+							$rowc = $resultc->fetch();
+							//var_dump($row);
+							if($row > 0){
+								$total_amont = $rowc['total_amount']?? "0";
+							}
+							
+						
+						
 
 					}
 					

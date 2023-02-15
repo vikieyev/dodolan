@@ -239,7 +239,7 @@ if($position=='admin') {
 			<i class="icon-dashboard"></i> Dashboard
 			</div>
 			<ul class="breadcrumb">
-			<li class="active"><a onclick="" href="#">Fullscreen F11</a></li>
+			<li class="active"><a onclick="toggle_fullscreen()" href="#">Fullscreen F11</a></li>
 			</ul>
 			<font style=" font:bold 44px 'Aleo'; text-shadow:1px 1px 25px #000; color:#fff;"><center><?php echo $_SESSION['SESS_FIRST_NAME'] ?> </center></font>
 <div id="mainmain">

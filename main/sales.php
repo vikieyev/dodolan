@@ -129,7 +129,7 @@ if($position=='admin') {
         </div><!--/span-->
 	<div class="span10">
 		<div class="contentheader">
-			<i class="icon-money"></i> Sales
+			<i class="icon-money"></i> Penjualan
 			</div>
 			<ul class="breadcrumb">
 			<a href="index.php"><li>Dashboard</li></a> /
@@ -179,10 +179,10 @@ if($position=='admin') {
 <table class="table table-bordered" id="resultTable" data-responsive="table">
 	<thead>
 		<tr>
-			<th> Product Name </th>
-			<th> Generic Name </th>
-			<th> Category / Description </th>
-			<th> Price </th>
+			<th> Merek </th>
+			<th> Nama Produk </th>
+			<th> Deskripsi </th>
+			<th> Harga </th>
 			<th> Qty </th>
 			<th> Amount </th>
 			<th> Profit </th>

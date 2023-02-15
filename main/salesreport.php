@@ -124,7 +124,7 @@ $finalcode='RS-'.createRandomPassword();
         </div><!--/span-->
 	<div class="span10">
 	<div class="contentheader">
-			<i class="icon-bar-chart"></i> Sales Report
+			<i class="icon-bar-chart"></i> Laporan Penjualan
 			</div>
 			<ul class="breadcrumb">
 			<li><a href="index.php">Dashboard</a></li> /
@@ -141,7 +141,7 @@ $finalcode='RS-'.createRandomPassword();
 <form action="salesreport.php" method="get">
 <center>
 	<strong>
-		From : <input type="text" style="width: 223px; padding:14px;" name="d1" class="tcal" value="<?php echo date("m/d/Y",strtotime(' -1 day')); ?>" /> To: <input type="text" style="width: 223px; padding:14px;" name="d2" class="tcal" value="<?php echo date("m/d/Y",strtotime(' +1 day')); ?>" />
+		Tgl Awal : <input type="text" style="width: 223px; padding:14px;" name="d1" class="tcal" value="<?php echo date("m/d/Y",strtotime(' -1 day')); ?>" /> Tgl Akhir: <input type="text" style="width: 223px; padding:14px;" name="d2" class="tcal" value="<?php echo date("m/d/Y",strtotime(' +1 day')); ?>" />
 	</strong>
  <button class="btn btn-info" style="width: 123px; height:35px; margin-top:-8px;margin-left:8px;" type="submit">
  	<i class="icon icon-search icon-large"></i> Search
@@ -160,11 +160,11 @@ Sales Report from&nbsp;<?php echo date("d-M-Y", strtotime($_GET['d1'] ));?>&nbsp
 <table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
-			<th width="13%"> Transaction ID </th>
-			<th width="13%"> Transaction Date </th>
-			<th width="20%"> Customer Name </th>
-			<th width="16%"> Invoice Number </th>
-			<th width="18%"> Amount </th>
+			<th width="13%"> No Transaksi </th>
+			<th width="13%"> Tanggal </th>
+			<th width="20%"> Nama Pelanggan </th>
+			<th width="16%"> Nomor Nota </th>
+			<th width="18%"> Jumlah </th>
 			<th width="13%"> Profit </th>
 		</tr>
 	</thead>
@@ -274,7 +274,7 @@ Sales Report from&nbsp;<?php echo date("d-M-Y", strtotime($_GET['d1'] ));?>&nbsp
 				include('../connect.php');
 				$d1=$_GET['d1'];
 				$d2=$_GET['d2'];
-				$result = $db->prepare("SELECT b.gen_name as nama_barang,sum(b.qty) as terjual from sales a join sales_order b on a.invoice_number = b.invoice where a.nama_toko = :nama_toko and a.date between :d1 and :d2 group by b.product_code order by terjual desc");
+				$result = $db->prepare("SELECT b.gen_name as nama_barang,sum(b.qty) as terjual from sales a join sales_order b on a.invoice_number = b.invoice where a.nama_toko = :nama_toko and a.date between :d1 and :d2 group by b.gen_name order by terjual desc");
 				$result->bindParam(':d1', $d1);
 				$result->bindParam(':d2', $d2);
 				$result->bindParam(':nama_toko', $_SESSION['SESS_FIRST_NAME']);

@@ -123,21 +123,21 @@ window.onload=startclock;
 				$rowcount = $result->rowcount();
 			?>
 			<div style="text-align:center;">
-			Total Number of Suppliers: <font color="green" style="font:bold 22px 'Aleo';"><?php echo $rowcount;?></font>
+			Total Jumlah Suppliers: <font color="green" style="font:bold 22px 'Aleo';"><?php echo $rowcount;?></font>
 			</div>
 </div>
-<input type="text" name="filter" style="height:35px; margin-top: -1px;" value="" id="filter" placeholder="Search Supplier..." autocomplete="off" />
-<a rel="facebox" href="addsupplier.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add Supplier</button></a><br><br>
+<input type="text" name="filter" style="height:35px; margin-top: -1px;" value="" id="filter" placeholder="Cari Supplier..." autocomplete="off" />
+<a rel="facebox" href="addsupplier.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Tambah Supplier</button></a><br><br>
 
 
 <table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
-			<th> Supplier </th>
-			<th> Contact Person </th>
-			<th> Address </th>
-			<th> Contact No.</th>
-			<th> Note</th>
+			<th> Nama Supplier </th>
+			<th> Nama Kontak </th>
+			<th> Alamat </th>
+			<th> No.Kontak</th>
+			<th> Catatan</th>
 			<th width="120"> Action </th>
 		</tr>
 	</thead>
