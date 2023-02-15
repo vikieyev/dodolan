@@ -108,18 +108,25 @@ $finalcode='RS-'.createRandomPassword();
 ?>
 <body>
 <?php include('navfixed.php');?>
-	<?php
-$position=$_SESSION['SESS_LAST_NAME'];
-if($position=='cashier') {
-?>
-<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>">Cash</a>
+<?php include('sidebar_new.php');?>
 
-<a href="../index.php">Logout</a>
 <?php
+	$position=$_SESSION['SESS_LAST_NAME'];
+	if($position=='Cashier') {
+			  
+		
+?>
+<div class="container-fluid">
+			  <div class="row-fluid">
+			<div class="span2">
+	<!-- <a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>">Cash</a>
+
+	<a href="../index.php">Logout</a> -->
+	<?php
 }
 if($position=='admin') {
 ?>
-	<?php include('sidebar_new.php');?>  
+<?php //include('sidebar_new.php');?>	  
 <div class="container-fluid">
       <div class="row-fluid">
 	<div class="span2">

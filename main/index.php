@@ -197,18 +197,27 @@ window.onload=startclock;
 
 <body light-mode="dark">
 
-<?php include('navfixed.php');?>
-	<?php
-$position=$_SESSION['SESS_LAST_NAME'];
-if($position=='cashier') {
+<?php 
+	include('navfixed.php');
+	
 ?>
+<?php include('sidebar_new.php')?>
+<?php
+	$position=$_SESSION['SESS_LAST_NAME'];
+	if($position=='Cashier') {
+	//header("location: sales.php?id=cash&invoice=.$finalcode.");
+	//echo "<html><meta http-equiv='refresh' content='0; URL=sales.php?id=cash&invoice=$finalcode'></html>";
+			
+?>
+<!-- <a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>">Cash</a> -->
 
-<a href="../index.php">Logout</a>
+<!-- <a href="../index.php">Logout</a> -->
 <?php
 }
+
 if($position=='admin') {
 ?>
-	<?php include('sidebar_new.php')?>
+	
 	<div class="container-fluid" >
       <div class="row-fluid">
 	<div class="span2">
@@ -255,6 +264,7 @@ if($position=='admin') {
 <?php
 }
 ?>
+
 <div class="clearfix"></div>
 
 </div>
