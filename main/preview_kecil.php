@@ -268,7 +268,7 @@ window.onload=startclock;
                       <table>
 
               <tr class="tabletitle">
-                <td>Order No. :</td>
+                <td>No.Nota :</td>
                 <td><?php echo $invoice ?></td>
               </tr>
               <tr class="tabletitle">
@@ -276,8 +276,12 @@ window.onload=startclock;
                 <td><?php echo $cname ?></td>
               </tr>
               <tr class="tabletitle">
-                <td>Date :</td>
+                <td>Tgl :</td>
                 <td><?php echo date("d-M-Y", strtotime($date )) ?></td>
+              </tr>
+              <tr class="tabletitle">
+                <td>Kasir :</td>
+                <td><?php echo  $_SESSION['SESS_USER_NAME']; ?></td>
               </tr>
             </table>
 
@@ -285,8 +289,8 @@ window.onload=startclock;
                             <tr class="tableitem">
                                 <td class="itemtext"><b>Item</b></td>
                                 <td class="itemtext"><b>Qty</b></td>
-                                <td class="itemtext"><b>Price</b></td>
-                                <td class="itemtext"><b>Sub T</b></td>
+                                <td class="itemtext"><b>Harga</b></td>
+                                <td class="itemtext"><b>S.Total</b></td>
                             </tr>
                             </tr>
 
@@ -355,7 +359,7 @@ window.onload=startclock;
                                 <td class="tableitem"><p class="itemtext">
                                   <?php
                     if($pt=='cash'){
-                    echo 'Change:';
+                    echo 'Kembali:';
                     }
                     if($pt=='credit'){
                     echo 'Due Date:';

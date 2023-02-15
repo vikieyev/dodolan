@@ -109,7 +109,7 @@ window.onload=startclock;
 			</div>
 			<ul class="breadcrumb">
 			<li><a href="index.php">Dashboard</a></li> /
-			<li class="active">Suppliers</li>
+			<li class="active">User</li>
 			</ul>
 
 
