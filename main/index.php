@@ -258,7 +258,8 @@ if($position=='admin') {
 <a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i><br> Penjualan</a>               
 <a href="products.php"><i class="icon-list-alt icon-2x"></i><br> Barang/Jasa</a>      
 <a href="customer.php"><i class="icon-group icon-2x"></i><br> Pelanggan</a>     
-<a href="supplier.php"><i class="icon-group icon-2x"></i><br> Suppliers</a>     
+<a href="supplier.php"><i class="icon-group icon-2x"></i><br> Suppliers</a>
+<a href="kasir.php"><i class="icon-group icon-2x"></i><br> Daftar User</a>     
 <a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i><br> Lap. Penjualan</a>
 <a href="../index.php"><font color="red"><i class="icon-off icon-2x"></i></font><br> Logout</a> 
 <?php

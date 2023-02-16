@@ -10,10 +10,20 @@ $w = $_POST['pt'];
 $date = $_POST['date'];
 $discount = $_POST['discount'];
 $discount = 0;
-$result = $db->prepare("SELECT * FROM products WHERE product_id= :userid or kode_barcode= :kode_barcode");
+$result = $db->prepare("SELECT * FROM products WHERE nama_toko= :nama_toko and (product_id= :userid or kode_barcode= :kode_barcode)");
 $result->bindParam(':userid', $b);
+$result->bindParam(':nama_toko',$_SESSION['SESS_FIRST_NAME']);
 $result->bindParam(':kode_barcode', $kode_barcode);
 $result->execute();
+$product_ada1 = "";
+// for($i=0; $row = $result->fetch(); $i++){
+// 	$product_ada1=$row['product'];
+// }
+// if($product_ada != ""){
+// 	echo "<center style='right:50%;top:50%;margin: 0;position:absolute;'><h1> Barcode Product Tidak Terdaftar! </h1></center>";
+// 	echo "<script type='text/javascript'>alert('Barcode Product Tidak Terdaftar!');history.back();</script>";
+// }
+
 $asasa ="";
 $fffffff=0;
 $d=0;

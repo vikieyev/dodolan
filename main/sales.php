@@ -192,7 +192,7 @@ if($position=='admin') {
 			<th> Harga </th>
 			<th> Qty </th>
 			<th> Amount </th>
-			<th> Profit </th>
+			<!-- <th> Profit </th> -->
 			<th> Action </th>
 		</tr>
 	</thead>
@@ -225,12 +225,12 @@ if($position=='admin') {
 			echo formatMoney($dfdf, true);
 			?>
 			</td>
-			<td>
+			<!-- <td>
 			<?php
 			$profit=$row['profit'];
-			echo formatMoney($profit, true);
+			#echo formatMoney($profit, true);
 			?>
-			</td>
+			</td> -->
 			<td width="90"><a href="delete.php?id=<?php echo $row['transaction_id']; ?>&invoice=<?php echo $_GET['invoice']; ?>&dle=<?php echo $_GET['id']; ?>&qty=<?php echo $row['qty'];?>&code=<?php echo $row['product'];?>&kode_barcode=<?php echo $row['product'];?>"><button class="btn btn-mini btn-warning"><i class="icon icon-remove"></i> Cancel </button></a></td>
 			</tr>
 			<?php
@@ -243,12 +243,12 @@ if($position=='admin') {
 			<th>  </th>
 			<th>  </th>
 			<td> Total Amount: </td>
-			<td> Total Profit: </td>
+			<!-- <td> Total Profit: </td> -->
 			<th>  </th>
 		</tr>
 			<tr>
 				<th colspan="5"><strong style="font-size: 12px; color: #222222;">Total:</strong></th>
-				<td colspan="1"><strong style="font-size: 12px; color: #222222;">
+				<td colspan="1"><strong style="font-size: 50px; color: #222222;">
 				<?php
 				function formatMoney($number, $fractional=false) {
 					if ($fractional) {
@@ -270,22 +270,22 @@ if($position=='admin') {
 				$resultas->execute();
 				for($i=0; $rowas = $resultas->fetch(); $i++){
 				$fgfg=$rowas['sum(amount)'];
-				echo formatMoney($fgfg, true);
+				echo formatMoney($fgfg);
 				}
 				?>
 				</strong></td>
-				<td colspan="1"><strong style="font-size: 12px; color: #222222;">
+				<!-- <td colspan="1"><strong style="font-size: 12px; color: #222222;">
 			<?php 
 				$resulta = $db->prepare("SELECT sum(profit) FROM sales_order WHERE invoice= :b");
 				$resulta->bindParam(':b', $sdsd);
 				$resulta->execute();
 				for($i=0; $qwe = $resulta->fetch(); $i++){
 				$asd=$qwe['sum(profit)'];
-				echo formatMoney($asd, true);
+				#echo formatMoney($asd, true);
 				}
 				?>
 		
-				</td>
+				</td> -->
 				<th></th>
 			</tr>
 		
