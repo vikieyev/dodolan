@@ -116,35 +116,15 @@ window.onload=startclock;
 <body>
 
 <?php include('navfixed.php');?>
-	
+<?php include('sidebar_new.php');?>
 	<div class="container-fluid">
       <div class="row-fluid">
 	<div class="span2">
-             <div class="well sidebar-nav">
-                 <ul class="nav nav-list">
-              <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
-			<li class="active"><a href="sales.php?id=cash&invoice"><i class="icon-shopping-cart icon-2x"></i> Sales</a>  </li>             
-			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Products</a>                                     </li>
-			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>
-			<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a>                                    </li>
-			<li><a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i> Sales Report</a>                </li>
-		<!--	<li><a href="sales_inventory.php"><i class="icon-table icon-2x"></i> Product Inventory</a>                </li> --->
-				<br><br><br><br><br><br>		
-			<li>
-			 <div class="hero-unit-clock">
-		
-			<form name="clock">
-			<font color="white">Time: <br></font>&nbsp;<input style="width:150px;" type="ok" class="trans" name="face" value="">
-			</form>
-			  </div>
-			</li>
-				
-				</ul>           
-          </div><!--/.well -->
+             
         </div><!--/span-->
-		
+		 
 	<div class="span10">
-	<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><button class="btn btn-default"><i class="icon-arrow-left"></i> Back to Sales</button></a>
+	<a href="preview_kecil.php?invoice=<?php echo $invoice; ?>"> <button class="btn btn-default"><i class="icon-arrow-left"></i> Kembali</button></a>
 
 <div class="content" id="content">
 <div style="margin: 0 auto; padding: 20px; width: 900px; font-weight: normal;">
@@ -166,16 +146,27 @@ window.onload=startclock;
 	?>
 	</div>
 	</div>
-	<div style="width: 136px; float: left; height: 70px;">
-	<table cellpadding="3" cellspacing="0" style="font-family: arial; font-size: 12px;text-align:left;width : 100%;">
-
+	<div style="width: 100%; float: left; height: 70px;">
+	<table cellpadding="1" cellspacing="0" style="font-family: arial; font-size: 12px;text-align:left;width : 100%;">
 		<tr>
-			<td>OR No. :</td>
-			<td><?php echo $invoice ?></td>
+			<td>No. Nota : <?php echo $invoice ?></td>
+			<td></td>
+			<td></td>
+			
+			<td>Kasir : <?php echo  $_SESSION['SESS_USER_NAME']; ?></td>
 		</tr>
 		<tr>
-			<td>Date :</td>
-			<td><?php echo $date ?></td>
+			<td>Pelanggan : <?php echo $cname ?></td>
+			<td></td>
+			<td></td>
+			
+			<td>Tanggal : <?php echo date("d-M-Y", strtotime($date )) ." ". date("H:i:s") ?></td>
+		</tr>
+		<tr>
+			<td>Alamat : <?php echo $address ?> <?php echo $contact ?></td>
+			<td></td>
+			<td></td>
+			
 		</tr>
 	</table>
 	
@@ -186,12 +177,12 @@ window.onload=startclock;
 	<table border="1" cellpadding="4" cellspacing="0" style="font-family: arial; font-size: 12px;	text-align:left;" width="100%">
 		<thead>
 			<tr>
-				<th width="90"> Product Code </th>
-				<th> Product Name </th>
+				<th width="90"> No </th>
+				<th> Item </th>
 				<th> Qty </th>
-				<th> Price </th>
-				<th> Discount </th>
-				<th> Amount </th>
+				<th> Harga </th>
+				<!-- <th> Note </th> -->
+				<th> Sub Total </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -213,12 +204,12 @@ window.onload=startclock;
 				echo formatMoney($ppp, true);
 				?>
 				</td>
-				<td>
+				<!-- <td>
 				<?php
 				$ddd=$row['discount'];
-				echo formatMoney($ddd, true);
+				//echo formatMoney($ddd, true);
 				?>
-				</td>
+				</td> -->
 				<td>
 				<?php
 				$dfdf=$row['amount'];
@@ -231,8 +222,8 @@ window.onload=startclock;
 				?>
 			
 				<tr>
-					<td colspan="5" style=" text-align:right;"><strong style="font-size: 12px;">Total: &nbsp;</strong></td>
-					<td colspan="2"><strong style="font-size: 12px;">
+					<td colspan="4" style=" text-align:right;"><strong style="font-size: 12px;">Total: &nbsp;</strong></td>
+					<td colspan="1"><strong style="font-size: 12px;">
 					<?php
 					$sdsd=$_GET['invoice'];
 					$resultas = $db->prepare("SELECT sum(amount) FROM sales_order WHERE invoice= :a");
@@ -248,8 +239,8 @@ window.onload=startclock;
 				<?php if($pt=='cash'){
 				?>
 				<tr>
-					<td colspan="5"style=" text-align:right;"><strong style="font-size: 12px; color: #222222;">Cash Tendered:&nbsp;</strong></td>
-					<td colspan="2"><strong style="font-size: 12px; color: #222222;">
+					<td colspan="4"style=" text-align:right;"><strong style="font-size: 12px; color: #222222;">Cash :&nbsp;</strong></td>
+					<td colspan="1"><strong style="font-size: 12px; color: #222222;">
 					<?php
 					echo formatMoney($cash, true);
 					?>
@@ -259,18 +250,18 @@ window.onload=startclock;
 				}
 				?>
 				<tr>
-					<td colspan="5" style=" text-align:right;"><strong style="font-size: 12px; color: #222222;">
-					<font style="font-size:20px;">
+					<td colspan="4" style=" text-align:right;"><strong style="font-size: 12px; color: #222222;">
+					<font style="font-size:12px;">
 					<?php
 					if($pt=='cash'){
-					echo 'Change:';
+					echo 'Kembali:';
 					}
 					if($pt=='credit'){
 					echo 'Due Date:';
 					}
 					?>&nbsp;
 					</strong></td>
-					<td colspan="2"><strong style="font-size: 15px; color: #222222;">
+					<td colspan="1"><strong style="font-size: 12px; color: #222222;">
 					<?php
 					function formatMoney($number, $fractional=false) {
 						if ($fractional) {

@@ -45,7 +45,8 @@ POS
 				 <div class="hero-unit-clock">
 			
 				<form name="clock">
-				<font color="white">Time: <br></font>&nbsp;<input style="width:150px;" type="submit" class="trans" name="face" value="" disabled>
+				<p style="color:white">Time: <br></p>
+				&nbsp;<input style="width:150px;color:red" type="submit" class="trans" name="face" value="" disabled>
 				</form>
 			
 				  </div>
@@ -70,7 +71,8 @@ POS
 				 <div class="hero-unit-clock">
 			
 				<form name="clock">
-				<font color="white">Time: <br></font>&nbsp;<input style="width:150px;" type="submit" class="trans" name="face" value="" disabled>
+				<p style="color:white">Time: <br></p>
+				&nbsp;<input style="width:150px;color:red" type="submit" class="trans" name="face" value="" disabled>
 				</form>
 			
 				  </div>

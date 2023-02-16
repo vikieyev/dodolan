@@ -23,19 +23,22 @@ POS
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="src/facebox.js" type="text/javascript"></script>
 <script language="javascript">
-function Clickheretoprint()
+function Clickheretoprint(divName)
 { 
   var disp_setting="toolbar=yes,location=no,directories=yes,menubar=yes,"; 
       disp_setting+="scrollbars=yes,width=800, height=400, left=100, top=25"; 
-  var content_vlue = document.getElementById("content").innerHTML; 
+  //var content_vlue = document.getElementById("content").innerHTML;
+  var content_vlue = document.getElementById(divName).innerHTML; 
   
   var docprint=window.open("","",disp_setting); 
    docprint.document.open(); 
-   docprint.document.write('</head><body onLoad="self.print()" style="width: 100px; font-size: 12px; font-family: arial;">');          
-   docprint.document.write(content_vlue); 
-   docprint.document.write('</body>');
+  // docprint.document.write('<head></head><body onLoad="self.print()" style="width: 100px; font-size: 12px; font-family: arial;">');          
+  docprint.document.write('<style>table { font-size:10px;} body{ font-size:12px;}</style><body onLoad="self.print()">');
+  docprint.document.write(content_vlue); 
+   docprint.document.write('</body></html>' );
    docprint.document.close(); 
    docprint.focus(); 
+   
 }
 function printDiv(divName) {
      var printContents = document.getElementById(divName).innerHTML;
@@ -102,15 +105,16 @@ $finalcode='RS-'.createRandomPassword();
         width: 100%;
         height: 100%;
         margin: auto;
+        width: 58mm;
     }
 }
       #invoice-POS {
-  box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.3); */
 
-  padding: 1mm;
+  padding: 0.1mm;
   margin: 0 auto ;
   
-  width: 44mm;
+  width: 58mm;
   background: #FFF;
 }
 #invoice-POS ::selection {
@@ -237,16 +241,16 @@ window.onload=startclock;
 ?>
 <?php include('sidebar_new.php');?>
   <div class="container-fluid">
-      <div class="row-fluid">
-  <div class="span2">
+  <div class="row-fluid">
+    <div class="span2">
              
-        </div><!--/span-->
+    </div>
     
-  <div class="span10">
-  <a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><button class="btn btn-default"><i class="icon-arrow-left"></i> Back to Sales</button></a>
-
+    <div class="span10">
+    <a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><button class="btn btn-default"><i class="icon-arrow-left"></i> Back to Sales</button></a>
+    
 <div id="content">
-<div class="centerOnPrintedPage">
+ <div class="centerOnPrintedPage">
   <div id="invoice-POS">
  
     <center>
@@ -277,7 +281,7 @@ window.onload=startclock;
               </tr>
               <tr class="tabletitle">
                 <td>Tgl :</td>
-                <td><?php echo date("d-M-Y", strtotime($date )) ?></td>
+                <td><?php echo date("d-M-Y", strtotime($date )) ." ". date("H:i:s") ?></td>
               </tr>
               <tr class="tabletitle">
                 <td>Kasir :</td>
@@ -401,14 +405,26 @@ window.onload=startclock;
                     </div>
  
                 </div><!--End InvoiceBot-->
-  </div><!--End Invoice-->
-</div>
+    </div><!--End Invoice-->
+   </div>
   </div>
-<div class="pull-right" style="margin-right:100px;">
-    <a onclick="printDiv('content')" style="font-size:20px;"><button class="btn btn-success btn-large"><i class="icon-print"></i> Print From PC</button></a>
-     
-    <a href="javascript:Clickheretoprint()" style="font-size:20px;"><button class="btn btn-success btn-large"><i class="icon-print"></i> Print From Phone</button></a>
+ </div> <!--End Content-->
+</div>
+                  </br>
+                  
+<!-- <div class="pull-right" style="margin-right:100px;"> -->
+<div class="center" style="margin-right:200px;">
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+             
+    </div>
     
+    <div class="span10">
+    <a onclick="printDiv('content')" style="font-size:20px;"><button class="btn btn-success btn-large"><i class="icon-print"></i> Print dari PC</button></a>
+     
+    <a href="javascript:Clickheretoprint('content')" style="font-size:20px;"><button class="btn btn-success btn-large"><i class="icon-print"></i> Print dari HP</button></a>
+    <a href="preview.php?invoice=<?php echo $id; ?>" style="font-size:20px;"><button class="btn btn-success btn-large"><i class="icon-print"></i> Nota Besar</button></a>
     </div>  
 </div>
 </div>
