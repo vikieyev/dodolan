@@ -247,7 +247,7 @@ if($position=='admin') {
 			<th>  </th>
 		</tr>
 			<tr>
-				<th colspan="5"><strong style="font-size: 12px; color: #222222;">Total:</strong></th>
+				<th colspan="5"><strong style="font-size: 30px; color: #222222;">Total Belanja:</strong></th>
 				<td colspan="1"><strong style="font-size: 50px; color: #222222;">
 				<?php
 				function formatMoney($number, $fractional=false) {
