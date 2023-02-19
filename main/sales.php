@@ -143,9 +143,19 @@ if($position=='admin') {
 			<li class="active">Sales</li>
 			</ul>
 <div style="margin-top: -19px; margin-bottom: 21px;">
-<a  href="index.php"><button class="btn btn-default btn-large" style="float: none;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
+<!-- <a  href="index.php"><button class="btn btn-default btn-large" style="float: none;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a> -->
+<center><h1><p  id="total_belanja"></p></h1>
+<!-- <a rel="facebox" href="checkout.php?pt=<?php echo $_GET['id']?>&invoice=<?php echo $_GET['invoice']?>&total=<?php echo $fgfg ?>&totalprof=<?php echo $asd ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success btn-large "><i class="icon icon-save icon-large"></i> BAYAR</button></a> -->
+</center>
 </div>
 
+<?php
+		// if($_SESSION['total_belanja']){
+		// 	$total_belanja = $_SESSION['total_belanja'];
+		// 	echo "<h1> $total_belanja </h1>";
+		// }
+	
+?>
 <form action="incoming.php" method="post" >
 											
 	<input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
@@ -247,8 +257,8 @@ if($position=='admin') {
 			<th>  </th>
 		</tr>
 			<tr>
-				<th colspan="5"><strong style="font-size: 30px; color: #222222;">Total Belanja:</strong></th>
-				<td colspan="1"><strong style="font-size: 50px; color: #222222;">
+				<th colspan="5"><strong style="font-size: 20px; color: #222222;">Total Belanja:</strong></th>
+				<td colspan="1"><strong style="font-size: 30px; color: #222222;">
 				<?php
 				function formatMoney($number, $fractional=false) {
 					if ($fractional) {
@@ -270,7 +280,15 @@ if($position=='admin') {
 				$resultas->execute();
 				for($i=0; $rowas = $resultas->fetch(); $i++){
 				$fgfg=$rowas['sum(amount)'];
+				$_SESSION['total_belanja'] = $fgfg;
 				echo formatMoney($fgfg);
+				$tb = "0";
+				if($fgfg){
+					$tb =  strval(formatMoney($fgfg));
+				}
+				
+				echo "<script> document.getElementById('total_belanja').innerHTML ='Total Belanja : Rp ".$tb."'; </script>";
+				//header("Refresh:0");
 				}
 				?>
 				</strong></td>
@@ -291,7 +309,7 @@ if($position=='admin') {
 		
 	</tbody>
 </table><br>
-<a rel="facebox" href="checkout.php?pt=<?php echo $_GET['id']?>&invoice=<?php echo $_GET['invoice']?>&total=<?php echo $fgfg ?>&totalprof=<?php echo $asd ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success btn-large btn-block"><i class="icon icon-save icon-large"></i> SAVE</button></a>
+<a rel="facebox" href="checkout.php?pt=<?php echo $_GET['id']?>&invoice=<?php echo $_GET['invoice']?>&total=<?php echo $fgfg ?>&totalprof=<?php echo $asd ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success btn-large btn-block"><i class="icon icon-save icon-large"></i> BAYAR</button></a>
 <div class="clearfix"></div>
 </div>
 </div>

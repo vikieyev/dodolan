@@ -139,6 +139,8 @@ window.onload=startclock;
 	$resulta = $db->prepare("SELECT * FROM customer WHERE customer_name= :a");
 	$resulta->bindParam(':a', $cname);
 	$resulta->execute();
+	$address = "-";
+	$contact = "-";
 	for($i=0; $rowa = $resulta->fetch(); $i++){
 	$address=$rowa['address'];
 	$contact=$rowa['contact'];
@@ -160,10 +162,10 @@ window.onload=startclock;
 			<td></td>
 			<td></td>
 			
-			<td>Tanggal : <?php echo date("d-M-Y", strtotime($date )) ." ". date("H:i:s") ?></td>
+			<td>Tanggal : <?php echo date("d-M-Y", strtotime($date )) ." ". date("H:i:s"); ?></td>
 		</tr>
 		<tr>
-			<td>Alamat : <?php echo $address ?> <?php echo $contact ?></td>
+			<td>Alamat : <?php echo $address ?: '-'; ?> <?php echo $contact ?: '-'; ?></td>
 			<td></td>
 			<td></td>
 			
