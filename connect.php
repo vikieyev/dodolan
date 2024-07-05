@@ -2,7 +2,7 @@
 /* Database config */
 $db_host		= 'localhost';
 $db_user		= 'pos';
-$db_pass		= 'yestha1987';
+$db_pass		= '';
 $db_database	= 'sales'; 
 
 /* End config */
